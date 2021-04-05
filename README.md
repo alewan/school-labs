@@ -10,8 +10,14 @@ Please do not copy or otherwise use these labs in unauthorized ways. The code be
 Furthermore, for existing students, using or copying others' work in submissions is typically punishable under the University's Code of Conduct.
 
 ## Courses
-ECE368: Probabilistic Reasoning (Classification, Regression, HMMs with Numpy)
-ECE421: Intro to Machine Learning (Classification, Regression, Neural Networks, Unsupervised Learning with Numpy, Tensorflow)
+Winter 2020
+- ECE368: Probabilistic Reasoning (Classification, Regression, HMMs with Numpy)
+
+Fall 2019
+- ECE421: Intro to Machine Learning (Classification, Regression, Neural Networks, Unsupervised Learning with Numpy, Tensorflow)
+
+Winter 2018
+- CSC384: Intro to AI (Search Problems, Constraint Satisfction Problems (CSPs), Minimax, Alpha-Beta Pruning, Expectimax)
 
 ## Notes
 There is no commit history from the labs since they were worked on in seperate repositories. Some helper functions or utilities may also be missing.

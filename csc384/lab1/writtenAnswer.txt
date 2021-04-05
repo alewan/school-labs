@@ -1,0 +1,40 @@
+Short Answer Questions
+
+1. Pacman is an NxN maze with no interior walls
+    (a) If Pacman is in a corner, the branching factor of its successor function is 2. This is because Pacman is restricted
+        to moving in the four cardinal directions, but two of them are blocked by walls.
+    (b) If Pacman is in the middle, the branching factor of its successor function is 4. This is because Pacman will be
+        able to move in any direction (N,S,E,W).
+    (c) The maximum possible depth of the search space is 2N - 1. This is because the longest possible depth would be from one corner
+        to the further corner, which is 2N -1 nodes away in Manhattan distance. (as mentioned Pacman is limited to moving in cardinal directions)
+
+2. Analyze Space Requirements for OPEN list in A*
+    (a) The maximum number of paths on the OPEN list at the time the solution is found is upper bounded by n = 4^(ctotal/cmin + 1).
+        According to the Time/Space complexity analysis of A* with a monotone heuristic, (Slide 35 of the Lecture 2 Heuristic Search slides)
+        when the heuristic h is greater than 0, the number of nodes expanded can be no larger than uniform costs and the same bounds must apply.
+        According to the Uniform-Cost properties, (Slide 70 of the Lecture 2 Uninformed Search slides) the maximum number of paths
+        expanded is b^d, where b is the number of possible successor states (given in the problem as 4) and d is the number
+        of actions in the shortest solution. (Obtain an upper bound with [cost of nodes expanded]/[min. cost per node] + 1)
+    (b) With only n paths being kept on the OPEN list, we can solve using the bound from part (a) for the appropriate cost bound.
+        We are using an Iterative Deepening A*-like search to save memory, discarding paths to allow the total number of paths
+        to remain less than n. Solving the relationship from (a) yields the bound for cost = cmin*(log(4,n)-1), where log(x,y) is log base x of y.
+
+3. Assume you have a heuristic that is monotone.
+    (a) f(n) = g(n) + h(n) will yield an optimal solution. This is the "base" A* cost function. Since h(n) is monotone,
+        the first time A* expands a state, it has found the minimum cost path to that state and it therefore must be optimal.
+        (This is described/proven in Slide 34 of the Lecture 2 Heuristic Search slides)
+    (b) f(n) = g(n) + 3h(n) will not necessarily yield an optimal solution, because we are now using a heuristic that
+        may no longer be monotone. The upper bound for the ratio of returned/optimal cost occurs when h(n) perfectly estimates
+        the cost of nodes, and the ratio between the returned and optimal solution would be 3.
+    (c) f(n) = 3g(n) + h(n) will yield an optimal solution by the same rationale as (a) because multiplication by 3 is a linear
+        operation and h(n) will remain monotone. (i.e. h(n) is still a valid heuristic)
+
+4. Considering two heuristics h1, h2, where h1 is longer to compute but dominates h2.
+    (a) Pacman should use h1 when there are only a few low cost paths and if there are many paths that could lead in the wrong
+        direction, as in this case the additional time taken to compute the h1 heuristic can provide an advantage by allowing
+        for significantly fewer incorrect paths to be expanded and evaluated. An example of this from the provided maps
+        are the tricky maps, trickyClassic and trickySearch.
+    (b) Pacman should use h2 when the number of paths to search is much larger and there exists many possible low cost paths,
+        since in these situations an algorithm using the h2 heuristic will be able to search far more states in the time that
+        it takes to compute the more lengthy heuristic h1. An example of this from the provided maps are the open maps,
+        like openMaze.
